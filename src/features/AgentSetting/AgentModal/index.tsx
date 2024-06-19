@@ -2,26 +2,26 @@
 
 import { Form, ItemGroup, SliderWithInput } from '@lobehub/ui';
 import { Switch } from 'antd';
-import { debounce } from 'lodash-es';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { useSyncSettings } from '@/app/(main)/settings/hooks/useSyncSettings';
 import { FORM_STYLE } from '@/const/layoutTokens';
 
 import { useStore } from '../store';
+import { selectors } from '../store/selectors';
+import { useAgentSyncSettings } from '../useSyncAgemtSettings';
 import ModelSelect from './ModelSelect';
 
 const AgentModal = memo(() => {
   const { t } = useTranslation('setting');
   const [form] = Form.useForm();
 
-  const [enableMaxTokens, updateConfig] = useStore((s) => [
-    s.config.enableMaxTokens,
-    s.setAgentConfig,
-  ]);
+  const [enableMaxTokens, updateConfig] = useStore((s) => {
+    const config = selectors.chatConfig(s);
+    return [config.enableMaxTokens, s.setAgentConfig];
+  });
 
-  useSyncSettings(form);
+  useAgentSyncSettings(form);
 
   const model: ItemGroup = {
     children: [
@@ -64,7 +64,7 @@ const AgentModal = memo(() => {
         children: <Switch />,
         label: t('settingModel.enableMaxTokens.title'),
         minWidth: undefined,
-        name: 'enableMaxTokens',
+        name: ['chatConfig', 'enableMaxTokens'],
         valuePropName: 'checked',
       },
       {
@@ -85,7 +85,7 @@ const AgentModal = memo(() => {
       form={form}
       items={[model]}
       itemsType={'group'}
-      onValuesChange={debounce(updateConfig, 100)}
+      onValuesChange={updateConfig}
       variant={'pure'}
       {...FORM_STYLE}
     />

@@ -4,6 +4,7 @@
   },
   "agentDefaultMessage": "Merhaba, Ben **{{name}}**. Hemen benimle sohbet etmeye başlayabilirsiniz veya [Asistan Ayarları](/chat/settings#session={{id}}) sayfasına giderek bilgilerimi tamamlayabilirsiniz.",
   "agentDefaultMessageWithSystemRole": "Merhaba, Ben **{{name}}**, {{systemRole}}. Hemen sohbet etmeye başlayalım!",
+  "agentsAndConversations": "Ajanlar ve Konuşmalar",
   "backToBottom": "En alta git",
   "clearCurrentMessages": "Mevcut oturum mesajlarını temizle",
   "confirmClearCurrentMessages": "Mevcut oturum mesajlarını temizlemek üzeresiniz. Temizlendikten sonra geri alınamazlar. Lütfen eyleminizi onaylayın.",
@@ -39,7 +40,6 @@
     "regenerate": "Yeniden Oluştur"
   },
   "newAgent": "Yeni Asistan",
-  "noDescription": "Açıklama yok",
   "pin": "Pin",
   "pinOff": "Unpin",
   "regenerate": "Tekrarla",
@@ -83,6 +83,7 @@
     "chats": "Sohbetler",
     "rest": "Kalan",
     "systemRole": "Sistem Rolü",
+    "title": "Bağlam Detayları",
     "tools": "Araçlar",
     "total": "Toplam",
     "used": "Kullanılan"
