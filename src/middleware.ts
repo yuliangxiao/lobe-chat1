@@ -2,7 +2,7 @@ import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
 import { NextResponse } from 'next/server';
 
 import { authEnv } from '@/config/auth';
-import { auth } from '@/libs/next-auth';
+import NextAuthEdge from '@/libs/next-auth/edge';
 
 import { OAUTH_AUTHORIZED } from './const/auth';
 
@@ -20,7 +20,8 @@ export const config = {
 
 const defaultMiddleware = () => NextResponse.next();
 
-const nextAuthMiddleware = auth((req) => {
+// Initialize an Edge compatible NextAuth middleware
+const nextAuthMiddleware = NextAuthEdge.auth((req) => {
   // skip the '/' route
   if (req.nextUrl.pathname === '/') return NextResponse.next();
 
@@ -53,7 +54,12 @@ export default authEnv.NEXT_PUBLIC_ENABLE_CLERK_AUTH
       (auth, req) => {
         if (isProtectedRoute(req)) auth().protect();
       },
-      { signInUrl: '/login', signUpUrl: '/signup' },
+      {
+        // https://github.com/lobehub/lobe-chat/pull/3084
+        clockSkewInMs: 60 * 60 * 1000,
+        signInUrl: '/login',
+        signUpUrl: '/signup',
+      },
     )
   : authEnv.NEXT_PUBLIC_ENABLE_NEXT_AUTH
     ? nextAuthMiddleware
