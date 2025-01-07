@@ -12,6 +12,7 @@
       "batchChunking": "Batchverdeling",
       "chunking": "Verdeling",
       "chunkingTooltip": "Splits het bestand in meerdere tekstblokken en vectoriseer deze voor semantische zoekopdrachten en bestandsdialoog",
+      "chunkingUnsupported": "Dit bestand ondersteunt geen chunking",
       "confirmDelete": "Je staat op het punt dit bestand te verwijderen. Na verwijdering kan het niet meer worden hersteld. Bevestig je actie.",
       "confirmDeleteMultiFiles": "Je staat op het punt de geselecteerde {{count}} bestanden te verwijderen. Na verwijdering kunnen ze niet meer worden hersteld. Bevestig je actie.",
       "confirmRemoveFromKnowledgeBase": "Je staat op het punt de geselecteerde {{count}} bestanden uit de kennisbank te verwijderen. Na verwijdering zijn de bestanden nog steeds zichtbaar in alle bestanden. Bevestig je actie.",
@@ -50,6 +51,8 @@
     "chunks": {
       "embeddingStatus": {
         "empty": "Tekstblokken zijn nog niet volledig gevectoriseerd, wat de semantische zoekfunctie kan uitschakelen. Om de zoekkwaliteit te verbeteren, vectoriseer de tekstblokken.",
+        "error": "Vectorisatie mislukt",
+        "errorResult": "Vectorisatie mislukt, controleer en probeer het opnieuw. Reden van falen:",
         "processing": "Tekstblokken worden gevectoriseerd, graag even geduld.",
         "success": "Huidige tekstblokken zijn allemaal gevectoriseerd"
       },
@@ -64,6 +67,9 @@
   },
   "GoBack": {
     "back": "Terug"
+  },
+  "MaxTokenSlider": {
+    "unlimited": "Onbeperkt"
   },
   "ModelSelect": {
     "featureTag": {

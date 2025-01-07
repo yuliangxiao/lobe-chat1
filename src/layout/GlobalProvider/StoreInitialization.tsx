@@ -10,6 +10,7 @@ import { useIsMobile } from '@/hooks/useIsMobile';
 import { useEnabledDataSync } from '@/hooks/useSyncData';
 import { useAgentStore } from '@/store/agent';
 import { useGlobalStore } from '@/store/global';
+import { systemStatusSelectors } from '@/store/global/selectors';
 import { useServerConfigStore } from '@/store/serverConfig';
 import { serverConfigSelectors } from '@/store/serverConfig/selectors';
 import { useUserStore } from '@/store/user';
@@ -20,12 +21,14 @@ const StoreInitialization = memo(() => {
   useTranslation('error');
 
   const router = useRouter();
-  const [isLogin, isSignedIn, useInitUserState, importUrlShareSettings] = useUserStore((s) => [
-    authSelectors.isLogin(s),
-    s.isSignedIn,
-    s.useInitUserState,
-    s.importUrlShareSettings,
-  ]);
+  const [isLogin, isSignedIn, useInitUserState, importUrlShareSettings, isUserStateInit] =
+    useUserStore((s) => [
+      authSelectors.isLogin(s),
+      s.isSignedIn,
+      s.useInitUserState,
+      s.importUrlShareSettings,
+      s.isUserStateInit,
+    ]);
 
   const { serverConfig } = useServerConfigStore();
 
@@ -48,7 +51,8 @@ const StoreInitialization = memo(() => {
    * But during initialization, the value of `enableAuth` might be incorrect cause of the async fetch.
    * So we need to use `isSignedIn` only to determine whether request for the default agent config and user state.
    */
-  const isLoginOnInit = enableNextAuth ? isSignedIn : isLogin;
+  const isDBInited = useGlobalStore(systemStatusSelectors.isDBInited);
+  const isLoginOnInit = isDBInited && (enableNextAuth ? isSignedIn : isLogin);
 
   // init inbox agent and default agent config
   useInitAgentStore(isLoginOnInit, serverConfig.defaultAgent?.config);
@@ -74,8 +78,10 @@ const StoreInitialization = memo(() => {
   // Import settings from the url
   const searchParam = useSearchParams().get(LOBE_URL_IMPORT_NAME);
   useEffect(() => {
-    importUrlShareSettings(searchParam);
-  }, [searchParam]);
+    // Why use `usUserStateInit`,
+    // see: https://github.com/lobehub/lobe-chat/pull/4072
+    if (searchParam && isUserStateInit) importUrlShareSettings(searchParam);
+  }, [searchParam, isUserStateInit]);
 
   useEffect(() => {
     if (mobile) {

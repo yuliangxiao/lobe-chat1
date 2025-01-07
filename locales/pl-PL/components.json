@@ -12,6 +12,7 @@
       "batchChunking": "Partycjonowanie wsadowe",
       "chunking": "Partycjonowanie",
       "chunkingTooltip": "Podziel plik na wiele bloków tekstowych i wektoryzuj, aby umożliwić wyszukiwanie semantyczne i rozmowy o plikach",
+      "chunkingUnsupported": "Ten plik nie obsługuje podziału na części.",
       "confirmDelete": "Zaraz usuniesz ten plik. Po usunięciu nie będzie można go odzyskać, proszę potwierdź swoje działanie",
       "confirmDeleteMultiFiles": "Zaraz usuniesz wybrane {{count}} plików. Po usunięciu nie będzie można ich odzyskać, proszę potwierdź swoje działanie",
       "confirmRemoveFromKnowledgeBase": "Zaraz usuniesz wybrane {{count}} plików z bazy wiedzy. Po usunięciu pliki będą nadal widoczne wśród wszystkich plików, proszę potwierdź swoje działanie",
@@ -50,6 +51,8 @@
     "chunks": {
       "embeddingStatus": {
         "empty": "Bloki tekstowe nie zostały w pełni wektoryzowane, co spowoduje, że funkcja wyszukiwania semantycznego będzie niedostępna. Aby poprawić jakość wyszukiwania, proszę wektoryzować bloki tekstowe",
+        "error": "Błąd wektoryzacji",
+        "errorResult": "Błąd wektoryzacji, spróbuj ponownie po sprawdzeniu. Powód błędu:",
         "processing": "Bloki tekstowe są wektoryzowane, proszę czekać",
         "success": "Obecne bloki tekstowe zostały w pełni wektoryzowane"
       },
@@ -64,6 +67,9 @@
   },
   "GoBack": {
     "back": "Wróć"
+  },
+  "MaxTokenSlider": {
+    "unlimited": "Bez ograniczeń"
   },
   "ModelSelect": {
     "featureTag": {

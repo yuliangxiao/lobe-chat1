@@ -12,6 +12,7 @@
       "batchChunking": "División por lotes",
       "chunking": "División",
       "chunkingTooltip": "Divida el archivo en múltiples bloques de texto y vectorícelos para su uso en búsqueda semántica y diálogo de archivos",
+      "chunkingUnsupported": "Este archivo no admite la fragmentación",
       "confirmDelete": "Está a punto de eliminar este archivo. Una vez eliminado, no podrá recuperarlo. Por favor, confirme su acción.",
       "confirmDeleteMultiFiles": "Está a punto de eliminar los {{count}} archivos seleccionados. Una vez eliminados, no podrá recuperarlos. Por favor, confirme su acción.",
       "confirmRemoveFromKnowledgeBase": "Está a punto de eliminar los {{count}} archivos seleccionados de la base de conocimientos. Los archivos seguirán siendo visibles en todos los archivos. Por favor, confirme su acción.",
@@ -50,6 +51,8 @@
     "chunks": {
       "embeddingStatus": {
         "empty": "Los bloques de texto aún no están completamente vectorizados, lo que hará que la función de búsqueda semántica no esté disponible. Para mejorar la calidad de búsqueda, por favor vectorice los bloques de texto.",
+        "error": "Error de vectorización",
+        "errorResult": "Error de vectorización, por favor verifica y vuelve a intentarlo. Motivo del fallo:",
         "processing": "Los bloques de texto están siendo vectorizados, por favor, tenga paciencia.",
         "success": "Todos los bloques de texto actuales han sido vectorizados."
       },
@@ -64,6 +67,9 @@
   },
   "GoBack": {
     "back": "Regresar"
+  },
+  "MaxTokenSlider": {
+    "unlimited": "Sin límite"
   },
   "ModelSelect": {
     "featureTag": {

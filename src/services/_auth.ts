@@ -8,16 +8,35 @@ import { createJWT } from '@/utils/jwt';
 export const getProviderAuthPayload = (provider: string) => {
   switch (provider) {
     case ModelProvider.Bedrock: {
-      const { accessKeyId, region, secretAccessKey } = keyVaultsConfigSelectors.bedrockConfig(
-        useUserStore.getState(),
-      );
+      const { accessKeyId, region, secretAccessKey, sessionToken } =
+        keyVaultsConfigSelectors.bedrockConfig(useUserStore.getState());
 
       const awsSecretAccessKey = secretAccessKey;
       const awsAccessKeyId = accessKeyId;
 
       const apiKey = (awsSecretAccessKey || '') + (awsAccessKeyId || '');
 
-      return { apiKey, awsAccessKeyId, awsRegion: region, awsSecretAccessKey };
+      return {
+        apiKey,
+        awsAccessKeyId,
+        awsRegion: region,
+        awsSecretAccessKey,
+        awsSessionToken: sessionToken,
+      };
+    }
+
+    case ModelProvider.Wenxin: {
+      const { secretKey, accessKey } = keyVaultsConfigSelectors.wenxinConfig(
+        useUserStore.getState(),
+      );
+
+      const apiKey = (accessKey || '') + (secretKey || '');
+
+      return {
+        apiKey,
+        wenxinAccessKey: accessKey,
+        wenxinSecretKey: secretKey,
+      };
     }
 
     case ModelProvider.Azure: {
@@ -26,14 +45,23 @@ export const getProviderAuthPayload = (provider: string) => {
       return {
         apiKey: azure.apiKey,
         azureApiVersion: azure.apiVersion,
-        endpoint: azure.endpoint,
+        baseURL: azure.endpoint,
       };
     }
 
     case ModelProvider.Ollama: {
       const config = keyVaultsConfigSelectors.ollamaConfig(useUserStore.getState());
 
-      return { endpoint: config?.baseURL };
+      return { baseURL: config?.baseURL };
+    }
+
+    case ModelProvider.Cloudflare: {
+      const config = keyVaultsConfigSelectors.cloudflareConfig(useUserStore.getState());
+
+      return {
+        apiKey: config?.apiKey,
+        cloudflareBaseURLOrAccountID: config?.baseURLOrAccountID,
+      };
     }
 
     default: {
@@ -41,7 +69,7 @@ export const getProviderAuthPayload = (provider: string) => {
         useUserStore.getState(),
       );
 
-      return { apiKey: config?.apiKey, endpoint: config?.baseURL };
+      return { apiKey: config?.apiKey, baseURL: config?.baseURL };
     }
   }
 };
@@ -50,7 +78,7 @@ const createAuthTokenWithPayload = async (payload = {}) => {
   const accessCode = keyVaultsConfigSelectors.password(useUserStore.getState());
   const userId = userProfileSelectors.userId(useUserStore.getState());
 
-  return await createJWT<JWTPayload>({ accessCode, userId, ...payload });
+  return createJWT<JWTPayload>({ accessCode, userId, ...payload });
 };
 
 interface AuthParams {

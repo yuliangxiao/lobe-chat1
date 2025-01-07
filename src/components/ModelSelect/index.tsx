@@ -1,17 +1,17 @@
+import { IconAvatarProps, ModelIcon, ProviderIcon } from '@lobehub/icons';
 import { Icon, Tooltip } from '@lobehub/ui';
 import { Typography } from 'antd';
 import { createStyles } from 'antd-style';
 import { Infinity, LucideEye, LucidePaperclip, ToyBrick } from 'lucide-react';
 import numeral from 'numeral';
 import { rgba } from 'polished';
-import { memo } from 'react';
+import { FC, memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Center, Flexbox } from 'react-layout-kit';
 
+import { ModelAbilities } from '@/types/aiModel';
 import { ChatModelCard } from '@/types/llm';
-
-import ModelIcon from '../ModelIcon';
-import ModelProviderIcon from '../ModelProviderIcon';
+import { formatTokenNumber } from '@/utils/format';
 
 const useStyles = createStyles(({ css, token }) => ({
   custom: css`
@@ -57,18 +57,11 @@ const useStyles = createStyles(({ css, token }) => ({
     border-radius: 4px;
   `,
 }));
-const formatTokenNumber = (num: number): string => {
-  if (num > 0 && num < 1024) return '1K';
 
-  let kiloToken = Math.floor(num / 1024);
-  if (num >= 128_000 && num < 1_024_000) {
-    kiloToken = Math.floor(num / 1000);
-  }
-  return kiloToken < 1000 ? `${kiloToken}K` : `${Math.floor(kiloToken / 1000)}M`;
-};
-
-interface ModelInfoTagsProps extends ChatModelCard {
+interface ModelInfoTagsProps extends ModelAbilities {
+  contextWindowTokens?: number | null;
   directionReverse?: boolean;
+  isCustom?: boolean;
   placement?: 'top' | 'right';
 }
 
@@ -112,19 +105,22 @@ export const ModelInfoTags = memo<ModelInfoTagsProps>(
             </div>
           </Tooltip>
         )}
-        {model.tokens !== undefined && (
+        {typeof model.contextWindowTokens === 'number' && (
           <Tooltip
             overlayStyle={{ maxWidth: 'unset', pointerEvents: 'none' }}
             placement={placement}
             title={t('ModelSelect.featureTag.tokens', {
-              tokens: model.tokens === 0 ? '∞' : numeral(model.tokens).format('0,0'),
+              tokens:
+                model.contextWindowTokens === 0
+                  ? '∞'
+                  : numeral(model.contextWindowTokens).format('0,0'),
             })}
           >
             <Center className={styles.token} title="">
-              {model.tokens === 0 ? (
+              {model.contextWindowTokens === 0 ? (
                 <Infinity size={17} strokeWidth={1.6} />
               ) : (
-                formatTokenNumber(model.tokens)
+                formatTokenNumber(model.contextWindowTokens as number)
               )}
             </Center>
           </Tooltip>
@@ -160,7 +156,19 @@ interface ProviderItemRenderProps {
 
 export const ProviderItemRender = memo<ProviderItemRenderProps>(({ provider, name }) => (
   <Flexbox align={'center'} gap={4} horizontal>
-    <ModelProviderIcon provider={provider} />
+    <ProviderIcon provider={provider} size={20} type={'mono'} />
     {name}
+  </Flexbox>
+));
+
+interface LabelRendererProps {
+  Icon: FC<IconAvatarProps>;
+  label: string;
+}
+
+export const LabelRenderer = memo<LabelRendererProps>(({ Icon, label }) => (
+  <Flexbox align={'center'} gap={8} horizontal>
+    <Icon size={20} />
+    <span>{label}</span>
   </Flexbox>
 ));

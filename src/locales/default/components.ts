@@ -12,6 +12,7 @@ export default {
       batchChunking: '批量分块',
       chunking: '分块',
       chunkingTooltip: '将文件拆分为多个文本块并向量化后，可用于语义检索和文件对话',
+      chunkingUnsupported: '该文件不支持分块',
       confirmDelete: '即将删除该文件，删除后该将无法找回，请确认你的操作',
       confirmDeleteMultiFiles:
         '即将删除选中的 {{count}} 个文件，删除后该将无法找回，请确认你的操作',
@@ -52,6 +53,8 @@ export default {
     chunks: {
       embeddingStatus: {
         empty: '文本块尚未完全向量化，将导致语义检索功能不可用，为提升检索质量，请对文本块向量化',
+        error: '向量化失败',
+        errorResult: '向量化失败，请检查后重试。失败原因：',
         processing: '文本块正在向量化，请耐心等待',
         success: '当前文本块均已向量化',
       },
@@ -66,6 +69,9 @@ export default {
   },
   GoBack: {
     back: '返回',
+  },
+  MaxTokenSlider: {
+    unlimited: '无限制',
   },
   ModelSelect: {
     featureTag: {

@@ -38,11 +38,43 @@
       "placeholder": "AWS Secret Access Key",
       "title": "AWS Secret Access Key"
     },
+    "sessionToken": {
+      "desc": "Se você estiver usando AWS SSO/STS, insira seu Token de Sessão da AWS",
+      "placeholder": "Token de Sessão da AWS",
+      "title": "Token de Sessão da AWS (opcional)"
+    },
     "title": "Bedrock",
     "unlock": {
       "customRegion": "Região de serviço personalizada",
+      "customSessionToken": "Token de Sessão Personalizado",
       "description": "Digite sua AWS AccessKeyId / SecretAccessKey para iniciar a sessão. O aplicativo não irá armazenar suas configurações de autenticação",
       "title": "Usar informações de autenticação Bedrock personalizadas"
+    }
+  },
+  "cloudflare": {
+    "apiKey": {
+      "desc": "Insira o Cloudflare API Key",
+      "placeholder": "Cloudflare API Key",
+      "title": "Cloudflare API Key"
+    },
+    "baseURLOrAccountID": {
+      "desc": "Insira o ID da conta do Cloudflare ou o endereço da API personalizado",
+      "placeholder": "ID da conta do Cloudflare / URL da API personalizada",
+      "title": "ID da conta do Cloudflare / Endereço da API"
+    }
+  },
+  "github": {
+    "personalAccessToken": {
+      "desc": "Insira seu PAT do Github, clique [aqui](https://github.com/settings/tokens) para criar",
+      "placeholder": "ghp_xxxxxx",
+      "title": "GitHub PAT"
+    }
+  },
+  "huggingface": {
+    "accessToken": {
+      "desc": "Insira seu Token do HuggingFace, clique [aqui](https://huggingface.co/settings/tokens) para criar",
+      "placeholder": "hf_xxxxxxxxx",
+      "title": "Token do HuggingFace"
     }
   },
   "ollama": {
@@ -56,10 +88,10 @@
       "title": "Nomes dos Modelos Personalizados"
     },
     "download": {
-      "desc": "Ollama is downloading the model. Please do not close this page. It will resume from where it left off if you restart the download.",
-      "remainingTime": "Remaining Time",
-      "speed": "Download Speed",
-      "title": "Downloading model {{model}}"
+      "desc": "Ollama está baixando este modelo, por favor, evite fechar esta página. O download será retomado do ponto em que parou.",
+      "remainingTime": "Tempo restante",
+      "speed": "Velocidade de download",
+      "title": "Baixando o modelo {{model}} "
     },
     "endpoint": {
       "desc": "Insira o endereço do proxy de interface da Ollama, se não foi especificado localmente, pode deixar em branco",
@@ -97,6 +129,26 @@
       "downloaded": "{{completed}} / {{total}}",
       "starting": "Starting download...",
       "title": "Download specified Ollama model"
+    }
+  },
+  "wenxin": {
+    "accessKey": {
+      "desc": "Insira a Access Key da plataforma Qianfan do Baidu",
+      "placeholder": "Access Key Qianfan",
+      "title": "Access Key"
+    },
+    "checker": {
+      "desc": "Teste se a AccessKey / SecretAccess está preenchida corretamente"
+    },
+    "secretKey": {
+      "desc": "Insira a Secret Key da plataforma Qianfan do Baidu",
+      "placeholder": "Secret Key Qianfan",
+      "title": "Secret Key"
+    },
+    "unlock": {
+      "customRegion": "Região de serviço personalizada",
+      "description": "Insira sua AccessKey / SecretKey para iniciar a sessão. O aplicativo não registrará suas configurações de autenticação",
+      "title": "Usar informações de autenticação personalizadas do Wenxin Yiyan"
     }
   },
   "zeroone": {

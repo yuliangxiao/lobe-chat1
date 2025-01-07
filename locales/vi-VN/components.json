@@ -12,6 +12,7 @@
       "batchChunking": "Chia nhỏ theo lô",
       "chunking": "Chia nhỏ",
       "chunkingTooltip": "Chia tách tệp thành nhiều khối văn bản và vector hóa, có thể sử dụng cho tìm kiếm ngữ nghĩa và đối thoại tệp",
+      "chunkingUnsupported": "Tập tin này không hỗ trợ phân mảnh",
       "confirmDelete": "Bạn sắp xóa tệp này, sau khi xóa sẽ không thể khôi phục, vui lòng xác nhận hành động của bạn",
       "confirmDeleteMultiFiles": "Bạn sắp xóa {{count}} tệp đã chọn, sau khi xóa sẽ không thể khôi phục, vui lòng xác nhận hành động của bạn",
       "confirmRemoveFromKnowledgeBase": "Bạn sắp xóa {{count}} tệp đã chọn khỏi kho tri thức, sau khi xóa tệp vẫn có thể xem trong tất cả các tệp, vui lòng xác nhận hành động của bạn",
@@ -50,6 +51,8 @@
     "chunks": {
       "embeddingStatus": {
         "empty": "Các khối văn bản chưa được vector hóa hoàn toàn, sẽ dẫn đến chức năng tìm kiếm ngữ nghĩa không khả dụng, để nâng cao chất lượng tìm kiếm, vui lòng vector hóa các khối văn bản",
+        "error": "Lỗi vector hóa",
+        "errorResult": "Lỗi vector hóa, vui lòng kiểm tra và thử lại. Nguyên nhân thất bại:",
         "processing": "Các khối văn bản đang được vector hóa, vui lòng chờ",
         "success": "Hiện tại tất cả các khối văn bản đã được vector hóa"
       },
@@ -64,6 +67,9 @@
   },
   "GoBack": {
     "back": "Quay lại"
+  },
+  "MaxTokenSlider": {
+    "unlimited": "Không giới hạn"
   },
   "ModelSelect": {
     "featureTag": {

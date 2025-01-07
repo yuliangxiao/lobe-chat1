@@ -12,6 +12,7 @@
       "batchChunking": "Toplu parçalara ayırma",
       "chunking": "Parçalara ayırma",
       "chunkingTooltip": "Dosyayı birden fazla metin parçasına ayırıp vektörleştirdikten sonra, anlamsal arama ve dosya diyalogları için kullanılabilir",
+      "chunkingUnsupported": "Bu dosya parça parça yüklemeyi desteklemiyor.",
       "confirmDelete": "Bu dosya silinecek, silindikten sonra geri alınamaz, lütfen işleminizi onaylayın",
       "confirmDeleteMultiFiles": "Seçilen {{count}} dosya silinecek, silindikten sonra geri alınamaz, lütfen işleminizi onaylayın",
       "confirmRemoveFromKnowledgeBase": "Seçilen {{count}} dosya bilgi tabanından kaldırılacak, kaldırıldıktan sonra dosyalar tüm dosyalar arasında görüntülenebilir, lütfen işleminizi onaylayın",
@@ -50,6 +51,8 @@
     "chunks": {
       "embeddingStatus": {
         "empty": "Metin parçaları henüz tamamen vektörleştirilmedi, bu durum anlamsal arama işlevinin kullanılamamasına neden olabilir, arama kalitesini artırmak için lütfen metin parçalarını vektörleştirin",
+        "error": "Vektörleştirme başarısız oldu",
+        "errorResult": "Vektörleştirme başarısız oldu, lütfen kontrol edip tekrar deneyin. Başarısız olma nedeni:",
         "processing": "Metin parçaları vektörleştiriliyor, lütfen bekleyin",
         "success": "Mevcut metin parçaları tamamen vektörleştirildi"
       },
@@ -64,6 +67,9 @@
   },
   "GoBack": {
     "back": "Geri dön"
+  },
+  "MaxTokenSlider": {
+    "unlimited": "Sınırsız"
   },
   "ModelSelect": {
     "featureTag": {

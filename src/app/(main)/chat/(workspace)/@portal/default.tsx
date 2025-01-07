@@ -1,22 +1,22 @@
 import React, { Suspense, lazy } from 'react';
 
-import Loading from '@/components/CircleLoading';
-import { isMobileDevice } from '@/utils/responsive';
+import Loading from '@/components/Loading/BrandTextLoading';
+import { isMobileDevice } from '@/utils/server/responsive';
 
 import Desktop from './_layout/Desktop';
 import Mobile from './_layout/Mobile';
 
-const PortalView = lazy(() => import('./router'));
+const PortalBody = lazy(() => import('@/features/Portal/router'));
 
-const Inspector = () => {
-  const mobile = isMobileDevice();
+const Inspector = async () => {
+  const mobile = await isMobileDevice();
 
   const Layout = mobile ? Mobile : Desktop;
 
   return (
     <Suspense fallback={<Loading />}>
       <Layout>
-        <PortalView />
+        <PortalBody />
       </Layout>
     </Suspense>
   );
